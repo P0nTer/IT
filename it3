@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+long long countNumbers(int r) {
+    long long dp[r + 1][2];
+    int i;
+
+    dp[1][0] = 2; // Числа з 1 розрядом 5 та 9
+    dp[1][1] = 1; // Число з 1 розрядом 5 або 9
+
+    for (i = 2; i <= r; i++) {
+        dp[i][0] = dp[i - 1][0] + dp[i - 1][1]; // Числа без обмеження однакових цифр
+        dp[i][1] = dp[i - 1][0]; // Числа з останнім розрядом однаковим з попереднім
+    }
+
+    return dp[r][0] + dp[r][1]; // Повна кількість чисел
+}
+
+int main() {
+    int r;
+
+    printf("Enter the number of digits: ");
+    scanf("%d", &r); // Зчитування кількості розрядів
+
+    long long result = countNumbers(r); // Обчислення кількості чисел
+
+    printf("Number of numbers with %d digits: %lld\n", r, result); // Виведення результату
+
+    return 0;
+}
