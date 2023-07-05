@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int gcd(int a, int b) {
+    if (b == 0)
+        return a;
+    return gcd(b, a % b); // Функція для обчислення найбільшого спільного дільника
+}
+
+int lcm(int a, int b) {
+    return (a * b) / gcd(a, b); // Функція для обчислення найменшого спільного кратного
+}
+
+int main() {
+    int n, i;
+    int numbers[20];
+    int result;
+
+    printf("Enter quantity numbers: ");
+    scanf("%d", &n);  // Зчитування кількості чисел
+
+    printf("Enter numbers (separated by spaces): ");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &numbers[i]); // Зчитування чисел
+    }
+
+
+    result = numbers[0];
+    for (i = 1; i < n; i++) {
+        result = lcm(result, numbers[i]); // Обчислення найменшого спільно кратного
+    }
+
+    printf("NSD: %d\n", result);     // Виведення результату
+
+    return 0;
+}
