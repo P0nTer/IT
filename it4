@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int countEqualDivisors(int n) {
+    int count = 0;
+    int i;
+
+    for (i = 1; i <= n; i++) {
+        if (n % i == n / i) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int n;
+
+    printf("Enter a natural number: ");
+    scanf("%d", &n); // Зчитування числа n
+
+    int result = countEqualDivisors(n); // Обчислення кількості рівних дільників
+
+    printf("The number of equal divisors for a number %d: %d\n", n, result); // Виведення результату
+    return 0;
+}
