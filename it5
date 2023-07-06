@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int countSequences(int n) {
+    int mod = 12345;
+
+    int countPrevPrev = 1;
+    int countPrev = 2;
+    int countCurrent = 0; // Змінні для зберігання кількості послідовностей
+
+for (int i = 3; i <= n; i++) {
+    countCurrent = (countPrev + countPrevPrev) % mod;
+    countPrevPrev = countPrev;
+    countPrev = countCurrent; // Кількість послідовностей для кожної довжини від 3 до n
+   }
+    return countCurrent;
+}
+
+int main() {
+    int n;
+
+    printf("Enter the length of the sequence: ");
+    scanf("%d", &n); // Зчитування довжини послідовності n
+
+    int result = countSequences(n); // Обчислення кількості послідовностей
+
+    printf("Enter number of searched sequences: %d\n", result); // Виведення результату
+    return 0;
+}
