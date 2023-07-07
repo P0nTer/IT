@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+
+int countIntersectionPoints(int x1, int y1, int r1, int x2, int y2, int r2) {
+    double distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+
+    if (distance == 0 && r1 == r2) {
+        return -1; // Перевірка на включення одного кола в інше
+    }
+
+    if (distance > r1 + r2 || distance < abs(r1 - r2)) {
+        return 0; // Перевірка чи немає точок перетину
+    }
+
+    if (distance == r1 + r2 || distance == abs(r1 - r2)) {
+        return 1; // Перевірка на одну точку перетину
+    }
+
+    return 2; // Дві точки перетину
+}
+
+int main() {
+    int x1, y1, r1, x2, y2, r2;
+
+    printf("Enter the coordinates and radii of the first circle (x1, y1, r1): ");
+    scanf("%d %d %d", &x1, &y1, &r1);
+    printf("Enter the coordinates and radii of the second circle (x2, y2, r2): ");
+    scanf("%d %d %d", &x2, &y2, &r2); // Зчитування координат та радіусів двох колів
+
+    int count = countIntersectionPoints(x1, y1, r1, x2, y2, r2); // Обчислення кількості точок перетину
+
+    if (count == -1) {
+        printf("Infinite intersection points\n");
+    } else {
+        printf("Number of intersection points: %d\n", count); // Виведення результату
+    }
+    return 0;
+}
