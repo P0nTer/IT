@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+int factorial(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1); // Функція для обчислення факторіалу
+    }
+}
+
+int countAnagrams(char word[]) { // Функція для підрахунку кількості анаграм
+    int length = strlen(word);
+    int count[26] = {0}; 
+    int totalAnagrams = factorial(length); 
+
+    for (int i = 0; i < length; i++) {
+        count[word[i] - 'A']++; // Обчислення кількості кожної букви у слові
+    }
+
+    for (int i = 0; i < 26; i++) {
+        if (count[i] > 1) {
+            totalAnagrams /= factorial(count[i]); // Врахування повторюваних букв у формулі факторіала
+        }
+    }
+
+    return totalAnagrams;
+}
+
+int main() {
+    char word[15];
+
+    printf("Enter a word: ");
+    scanf("%s", word);
+
+    int anagramCount = countAnagrams(word); // Обчислення кількості анаграм
+
+    printf("Number of anagrams: %d\n", anagramCount); // Виведення результату
+
+    return 0;
+}
